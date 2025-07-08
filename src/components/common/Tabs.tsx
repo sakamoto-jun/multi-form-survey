@@ -6,7 +6,7 @@ const TabContext = createContext({
   setCurrentTab: (_: number) => {},
 });
 
-const TabProvider = ({ children }: PropsWithChildren) => {
+export default function Tabs({ children }: PropsWithChildren) {
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
@@ -14,7 +14,7 @@ const TabProvider = ({ children }: PropsWithChildren) => {
       {children}
     </TabContext.Provider>
   );
-};
+}
 
 export const TabList = ({ children }: PropsWithChildren) => {
   return <div className="flex justify-center gap-x-20">{children}</div>;
@@ -51,5 +51,3 @@ export const TabPanel = ({
 
   return <div hidden={currentTab !== index}>{children}</div>;
 };
-
-export default TabProvider;

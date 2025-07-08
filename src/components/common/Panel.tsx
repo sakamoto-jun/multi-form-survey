@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
 
-const Panel = ({ children }: PropsWithChildren) => {
+export default function Panel({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col p-20 pt-26 bg-white rounded-10">
       {children}
     </div>
   );
-};
+}
 
 export const PanelHeader = ({ children }: PropsWithChildren) => {
   return <div>{children}</div>;
@@ -35,5 +35,3 @@ export const PanelCap = ({ children }: PropsWithChildren) => {
     </div>
   );
 };
-
-export default Panel;
