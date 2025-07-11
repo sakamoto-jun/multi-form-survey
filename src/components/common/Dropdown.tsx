@@ -24,8 +24,8 @@ interface DropdownContextType<T = unknown> {
 }
 
 interface DropdownProps<T> {
-  placeholder?: string;
   options: DropdownOption<T>[];
+  placeholder?: string;
   onChange?: (value: T) => void;
 }
 
