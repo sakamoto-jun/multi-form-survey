@@ -25,6 +25,7 @@ interface DropdownContextType<T = unknown> {
 
 interface DropdownProps<T> {
   options: DropdownOption<T>[];
+  defaultValue?: T;
   placeholder?: string;
   onChange?: (value: T) => void;
 }
@@ -32,12 +33,17 @@ interface DropdownProps<T> {
 const DropdownContext = createContext<DropdownContextType | null>(null);
 
 export default function Dropdown<T>({
-  placeholder,
   options,
+  defaultValue,
+  placeholder,
   onChange,
 }: DropdownProps<T>) {
   const [opened, setOpend] = useState(false);
-  const [selected, setSelected] = useState(-1);
+  const [selected, setSelected] = useState(
+    defaultValue
+      ? options.findIndex((option) => option.value === defaultValue)
+      : -1
+  );
 
   const open = useCallback(() => setOpend(true), []);
   const close = useCallback(() => setOpend(false), []);
@@ -97,7 +103,7 @@ const DropdownMenu = () => {
   return opened ? (
     <div
       ref={containerRef as RefObject<HTMLDivElement>}
-      className="flex flex-col absolute left-0 top-full min-w-197 mt-10 border border-gray300 rounded-10 bg-white"
+      className="flex flex-col absolute left-0 top-full min-w-197 mt-10 border border-gray300 rounded-10 bg-white z-10"
     >
       {options.map((option, index) => (
         <DropdownMenuItem

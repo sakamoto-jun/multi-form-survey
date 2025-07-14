@@ -7,24 +7,27 @@ import Tabs, {
   TabPanel,
   TabPanels,
 } from "./components/common/Tabs";
-import QuestionEditor from "./components/edit/QuestionEditor";
+import SectionEditorList from "./components/edit/SectionEditorList";
+import { SurveyStoreProvider } from "./store";
 
 const App = () => {
   return (
     <MainLayout>
-      <Tabs>
-        <TabList>
-          <Tab index={0}>Tab 1</Tab>
-          <Tab index={1}>Tab 2</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel index={0}>
-            <PanelCap>Cap</PanelCap>
-            <QuestionEditor />
-          </TabPanel>
-          <TabPanel index={1}>Panel 2</TabPanel>
-        </TabPanels>
-      </Tabs>
+      <SurveyStoreProvider>
+        <Tabs>
+          <TabList>
+            <Tab index={0}>Tab 1</Tab>
+            <Tab index={1}>Tab 2</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel index={0}>
+              <PanelCap>Cap</PanelCap>
+              <SectionEditorList />
+            </TabPanel>
+            <TabPanel index={1}>Panel 2</TabPanel>
+          </TabPanels>
+        </Tabs>
+      </SurveyStoreProvider>
     </MainLayout>
   );
 };

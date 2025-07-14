@@ -4,7 +4,7 @@ import { forwardRef, InputHTMLAttributes } from "react";
 const Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
->(function Input({ className, ...props }, ref) {
+>(function InputBase({ className, ...props }, ref) {
   return (
     <input
       ref={ref}
