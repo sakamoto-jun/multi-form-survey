@@ -32,10 +32,10 @@ export default class Question implements QuestionData {
     this.options = data.options;
   }
 
-  setTitle(title: string) {
+  setTitle = (title: string) => {
     this.title = title;
-  }
-  setType(type: QuestionType) {
+  };
+  setType = (type: QuestionType) => {
     this.type = type;
 
     if (
@@ -47,11 +47,11 @@ export default class Question implements QuestionData {
     } else {
       this.options = undefined;
     }
-  }
-  setRequired(required: boolean) {
+  };
+  setRequired = (required: boolean) => {
     this.required = required;
-  }
-  setOptions(options: string[]) {
+  };
+  setOptions = (options: string[]) => {
     this.options = options;
-  }
+  };
 }

@@ -12,13 +12,13 @@ class SurveyStore {
     this.focusedSectionId = this.sections[0].id;
   }
 
-  addSection() {
+  addSection = () => {
     const newSection = new Section();
 
     this.sections.push(newSection);
     this.focusedSectionId = newSection.id;
-  }
-  addQuestion() {
+  };
+  addQuestion = () => {
     const currentSection = this.sections.find(
       (section) => section.id === this.focusedSectionId
     );
@@ -26,7 +26,7 @@ class SurveyStore {
     if (currentSection) {
       currentSection.addQuestion();
     }
-  }
+  };
 }
 
 const surveyStore = new SurveyStore();

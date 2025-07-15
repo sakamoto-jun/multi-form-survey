@@ -29,19 +29,19 @@ export default class Section implements SectionData {
     this.questions = data.questions;
   }
 
-  setTitle(title: string) {
+  setTitle = (title: string) => {
     this.title = title;
-  }
-  setDescription(description: string) {
+  };
+  setDescription = (description: string) => {
     this.description = description;
-  }
-  addQuestion() {
+  };
+  addQuestion = () => {
     this.questions.push(new Question());
-  }
-  removeQuestion(id: number) {
+  };
+  removeQuestion = (id: number) => {
     this.questions.filter((question) => question.id !== id);
-  }
-  copyQuestion(id: number) {
+  };
+  copyQuestion = (id: number) => {
     const question = this.questions.find((question) => question.id === id);
 
     if (question) {
@@ -52,5 +52,5 @@ export default class Section implements SectionData {
         })
       );
     }
-  }
+  };
 }
