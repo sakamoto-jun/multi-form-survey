@@ -1,11 +1,11 @@
-import cn from "classnames";
+import clsx from "clsx";
 import { PropsWithChildren } from "react";
 
 export default function Panel({ children, className }: PropsWithChildren<Cn>) {
   return (
     <div
-      className={cn(
-        "flex flex-col p-20 pt-26 bg-white rounded-10 mb-20",
+      className={clsx(
+        "flex flex-col p-20 pt-26 bg-white rounded-10",
         className
       )}
     >

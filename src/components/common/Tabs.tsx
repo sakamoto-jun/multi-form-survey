@@ -1,4 +1,4 @@
-import cn from "classnames";
+import clsx from "clsx";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 const TabContext = createContext({
@@ -28,10 +28,12 @@ export const Tab = ({
 
   return (
     <button
-      className={cn("p-14 border-b-3", {
-        "text-main border-main": currentTab === index,
-        "text-gray500 border-transparent": currentTab !== index,
-      })}
+      className={clsx(
+        "p-14 border-b-3",
+        currentTab === index
+          ? "text-main border-main"
+          : "text-gray500 border-transparent"
+      )}
       onClick={() => setCurrentTab(index)}
     >
       {children}

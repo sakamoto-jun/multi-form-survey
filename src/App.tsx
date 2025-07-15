@@ -1,6 +1,5 @@
 import "./App.css";
 import MainLayout from "./components/common/MainLayout";
-import { PanelCap } from "./components/common/Panel";
 import Tabs, {
   Tab,
   TabList,
@@ -21,7 +20,6 @@ const App = () => {
           </TabList>
           <TabPanels>
             <TabPanel index={0}>
-              <PanelCap>Cap</PanelCap>
               <SectionEditorList />
             </TabPanel>
             <TabPanel index={1}>Panel 2</TabPanel>

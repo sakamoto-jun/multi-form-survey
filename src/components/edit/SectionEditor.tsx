@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import Section from "../../models/section";
 import QuestionEditor from "./QuestionEditor";
+import SectionTitleEditor from "./SectionTitleEditor";
 
 interface SectionEditorProps {
   section: Section;
@@ -8,7 +9,8 @@ interface SectionEditorProps {
 
 const SectionEditorBase = ({ section }: SectionEditorProps) => {
   return (
-    <div>
+    <div className="[&>*]:mb-24 py-10">
+      <SectionTitleEditor capTitle="2개 중 1 섹션" section={section} />
       {section.questions.map((question) => (
         <QuestionEditor key={question.id} question={question} />
       ))}

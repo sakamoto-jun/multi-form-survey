@@ -13,10 +13,10 @@ class SurveyStore {
   }
 
   addSection() {
-    const section = new Section();
+    const newSection = new Section();
 
-    this.sections.push(section);
-    this.focusedSectionId = section.id;
+    this.sections.push(newSection);
+    this.focusedSectionId = newSection.id;
   }
   addQuestion() {
     const currentSection = this.sections.find(
