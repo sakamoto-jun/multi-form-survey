@@ -12,6 +12,11 @@ class SurveyStore {
     this.focusedSectionId = this.sections[0].id;
   }
 
+  setFocusedSectionId = (id: number) => {
+    if (this.focusedSectionId !== id) {
+      this.focusedSectionId = id;
+    }
+  };
   addSection = () => {
     const newSection = new Section();
 

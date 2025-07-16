@@ -21,7 +21,7 @@ const QuestionEditorBase = ({
   onDelete,
 }: QuestionEditorProps) => {
   return (
-    <Panel>
+    <Panel className="border-l-5 border-l-transparent focus-within:border-l-main">
       <PanelHeader className="flex mb-25">
         <Input className="flex-1 mr-30" />
         <QuestionTypeEditor type={question.type} onChange={question.setType} />

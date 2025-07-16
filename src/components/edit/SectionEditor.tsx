@@ -4,13 +4,21 @@ import QuestionEditor from "./QuestionEditor";
 import SectionTitleEditor from "./SectionTitleEditor";
 
 interface SectionEditorProps {
+  capTitle: string;
   section: Section;
+  onChangeFocus: (id: number) => void;
 }
 
-const SectionEditorBase = ({ section }: SectionEditorProps) => {
+const SectionEditorBase = ({
+  capTitle,
+  section,
+  onChangeFocus,
+}: SectionEditorProps) => {
+  const handleClickContainer = () => onChangeFocus(section.id);
+
   return (
-    <div className="[&>*]:mb-24 py-10">
-      <SectionTitleEditor capTitle="2개 중 1 섹션" section={section} />
+    <div className="[&>*]:mb-24 py-10" onClick={handleClickContainer}>
+      <SectionTitleEditor capTitle={capTitle} section={section} />
       {section.questions.map((question) => (
         <QuestionEditor
           key={question.id}
