@@ -7,7 +7,7 @@ const SectionEditorList = () => {
 
   return (
     <div className="relative">
-      <EditorMenu className="fixed bottom-30 left-[calc(100%-72px)] sm:top-[273.5px] sm:bottom-auto sm:left-[calc(50%+340px)]" />
+      <EditorMenu className="fixed bottom-30 left-[calc(100%-72px)] sm:top-[273px] sm:bottom-auto sm:left-[calc(50%+340px)]" />
       <div>
         {surveyStore.sections.map((section) => (
           <SectionEditor key={section.id} section={section} />

@@ -12,7 +12,12 @@ const SectionEditorBase = ({ section }: SectionEditorProps) => {
     <div className="[&>*]:mb-24 py-10">
       <SectionTitleEditor capTitle="2개 중 1 섹션" section={section} />
       {section.questions.map((question) => (
-        <QuestionEditor key={question.id} question={question} />
+        <QuestionEditor
+          key={question.id}
+          question={question}
+          onCopy={section.copyQuestion}
+          onDelete={section.removeQuestion}
+        />
       ))}
     </div>
   );
