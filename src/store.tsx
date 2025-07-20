@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
-import Section from "./models/section";
+import Section, { SectionData } from "./models/section";
+import callApi from "./utils/api";
 
 class SurveyStore {
   sections: Section[];
@@ -31,6 +32,13 @@ class SurveyStore {
     if (currentSection) {
       currentSection.addQuestion();
     }
+  };
+  fetchSurvey = async (id: number) => {
+    const { sections } = await callApi<{ sections: SectionData[] }>(
+      `/surveys/${id}`
+    );
+
+    this.sections = sections.map((section) => new Section(section));
   };
 }
 

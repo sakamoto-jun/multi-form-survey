@@ -1,7 +1,8 @@
 import { Outlet, RouteObject } from "react-router";
 import MainLayout from "./components/common/MainLayout";
-import SectionEditorList from "./components/edit/SectionEditorList";
 import AdminPage from "./pages/AdminPage";
+import CreatePage from "./pages/CreatePage";
+import EditPage from "./pages/EditPage";
 import { SurveyStoreProvider } from "./store";
 
 export const routerConfig: RouteObject[] = [
@@ -16,12 +17,16 @@ export const routerConfig: RouteObject[] = [
     ),
     children: [
       {
+        path: "surveys/new",
+        element: <CreatePage />,
+      },
+      {
         path: "surveys/:surveyId",
         element: <AdminPage />,
         children: [
           {
             path: "edit",
-            element: <SectionEditorList />,
+            element: <EditPage />,
           },
           {
             path: "responses",

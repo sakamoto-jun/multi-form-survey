@@ -23,7 +23,11 @@ const QuestionEditorBase = ({
   return (
     <Panel className="border-l-5 border-l-transparent focus-within:border-l-main">
       <PanelHeader className="flex mb-25">
-        <Input className="flex-1 mr-30" />
+        <Input
+          className="flex-1 mr-30"
+          value={question.title}
+          onChange={(e) => question.setTitle(e.target.value)}
+        />
         <QuestionTypeEditor type={question.type} onChange={question.setType} />
       </PanelHeader>
       <PanelBody>
