@@ -1,5 +1,5 @@
 interface ApiParams {
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   body?: object;
   baseUrl?: string;
 }

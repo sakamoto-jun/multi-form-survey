@@ -1,1 +1,1 @@
-{"1753007342440":{"sections":[{"id":1753007248625,"title":"섹션 1","description":"설명","questions":[{"id":1753007248625,"title":"질문 1","type":"shortText","required":true},{"id":1753007329810,"title":"질문 2","type":"date","required":false}]}]}}
+{"1753290322746":{"sections":[{"id":1753290313971,"title":"섹션","description":"설명","questions":[{"id":1753290313971,"title":"질문","type":"shortText","required":false}]}],"emailCollected":true}}

@@ -4,11 +4,13 @@ import Section, { SectionData } from "./models/section";
 import callApi from "./utils/api";
 
 class SurveyStore {
+  emailCollected: boolean;
   sections: Section[];
   focusedSectionId: number | null;
 
   constructor() {
     makeAutoObservable(this);
+    this.emailCollected = false;
     this.sections = [new Section()];
     this.focusedSectionId = this.sections[0].id;
   }
@@ -34,19 +36,21 @@ class SurveyStore {
     }
   };
   fetchSurvey = async (id: number) => {
-    const { sections } = await callApi<{ sections: SectionData[] }>(
-      `/surveys/${id}`
-    );
+    const { sections, emailCollected } = await callApi<{
+      sections: SectionData[];
+      emailCollected: boolean;
+    }>(`/surveys/${id}`);
 
+    this.emailCollected = emailCollected ?? false;
     this.sections = sections.map((section) => new Section(section));
   };
 }
 
 const surveyStore = new SurveyStore();
-
 const SurveyStoreContext = createContext(surveyStore);
+
 // eslint-disable-next-line react-refresh/only-export-components
-export const useSurveyStore = () => useContext(SurveyStoreContext);
+export const useSurveyStore = () => useContext(SurveyStoreContext); // 커스텀 훅
 
 export const SurveyStoreProvider = ({ children }: PropsWithChildren) => {
   return (

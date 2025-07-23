@@ -17,7 +17,7 @@ const SectionEditorBase = ({
   const handleClickContainer = () => onChangeFocus(section.id);
 
   return (
-    <div className="[&>*]:mb-24 py-10" onClick={handleClickContainer}>
+    <div className="[&>*]:mb-24" onClick={handleClickContainer}>
       <SectionTitleEditor capTitle={capTitle} section={section} />
       {section.questions.map((question) => (
         <QuestionEditor

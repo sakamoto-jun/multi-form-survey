@@ -1,23 +1,28 @@
 import { toJS } from "mobx";
+import { useNavigate } from "react-router";
+import Button from "../components/common/Button";
 import SectionEditorList from "../components/edit/SectionEditorList";
 import { useSurveyStore } from "../store";
 import callApi from "../utils/api";
 
 const CreatePage = () => {
   const surveyStore = useSurveyStore();
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    callApi("/surveys", {
+  const handleSubmit = async () => {
+    const { id } = await callApi<{ id: number }>("/surveys", {
       method: "POST",
       body: toJS({ sections: surveyStore.sections }),
     });
+
+    navigate(`/surveys/${id}/edit#send`);
   };
 
   return (
     <>
-      <div>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+      <Button className="absolute -top-30 right-0 z-20" onClick={handleSubmit}>
+        보내기
+      </Button>
       <SectionEditorList />
     </>
   );

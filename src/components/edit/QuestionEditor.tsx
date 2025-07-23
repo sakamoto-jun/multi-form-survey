@@ -33,7 +33,7 @@ const QuestionEditorBase = ({
       <PanelBody>
         <QuestionBodyEditor type={question.type} />
       </PanelBody>
-      <PanelFooter className="flex justify-end items-stretch gap-x-24 h-24">
+      <PanelFooter className="flex justify-end items-stretch gap-x-24 h-24 mt-20">
         <button onClick={() => onCopy(question.id)}>
           <CopyIcon />
         </button>

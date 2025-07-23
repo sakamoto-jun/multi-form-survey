@@ -1,35 +1,48 @@
 import { toJS } from "mobx";
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router";
+import Button from "../components/common/Button";
+import Modal from "../components/common/Modal";
 import SectionEditorList from "../components/edit/SectionEditorList";
+import SendModalContent from "../components/edit/SendModalContent";
 import { useSurveyStore } from "../store";
 import callApi from "../utils/api";
 
 const EditPage = () => {
   const surveyStore = useSurveyStore();
-  const { surveyId } = useParams<{ surveyId: string }>();
+  const { surveyId = "" } = useParams<{ surveyId: string }>();
+  const { hash } = useLocation();
+  const [opened, setOpened] = useState(hash === "#send");
 
   useEffect(() => {
-    const id = parseInt(surveyId ?? "", 10);
+    const id = parseInt(surveyId, 10);
 
     if (id) {
       surveyStore.fetchSurvey(id);
     }
   }, [surveyStore, surveyId]);
 
-  const handleSubmit = () => {
-    callApi(`/surveys/${surveyId}`, {
+  const handleSubmit = async () => {
+    await callApi(`/surveys/${surveyId}`, {
       method: "PUT",
       body: toJS({ sections: surveyStore.sections }),
     });
+    setOpened(true);
   };
 
   return (
     <>
-      <div>
-        <button onClick={handleSubmit}>Edit</button>
-      </div>
+      <Button className="absolute top-0 right-0" onClick={handleSubmit}>
+        보내기
+      </Button>
       <SectionEditorList />
+      <Modal opened={opened}>
+        <SendModalContent
+          surveyId={parseInt(surveyId, 10)}
+          emailCollected={surveyStore.emailCollected}
+          onClose={() => setOpened(false)}
+        />
+      </Modal>
     </>
   );
 };

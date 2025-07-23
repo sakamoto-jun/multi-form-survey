@@ -25,7 +25,7 @@ export const PanelBody = ({ children, className }: PropsWithChildren<Cn>) => {
 export const PanelFooter = ({ children, className }: PropsWithChildren<Cn>) => {
   return (
     <>
-      <hr className="border-gray100 mb-20" />
+      <hr className="border-gray100" />
       <div className={className}>{children}</div>
     </>
   );
@@ -33,7 +33,7 @@ export const PanelFooter = ({ children, className }: PropsWithChildren<Cn>) => {
 
 export const PanelCap = ({ children }: PropsWithChildren) => {
   return (
-    <div className="relative -mb-10 z-10">
+    <div className="relative -mb-10">
       <div className="inline-block px-14 pt-10 pb-6 bg-main rounded-t-10 text-15 text-white">
         {children}
       </div>
