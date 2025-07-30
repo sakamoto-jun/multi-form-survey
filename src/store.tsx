@@ -43,6 +43,7 @@ class SurveyStore {
 
     this.emailCollected = emailCollected ?? false;
     this.sections = sections.map((section) => new Section(section));
+    this.focusedSectionId = this.sections[0].id;
   };
 }
 

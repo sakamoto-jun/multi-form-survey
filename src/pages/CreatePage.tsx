@@ -1,7 +1,7 @@
 import { toJS } from "mobx";
 import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
-import SectionEditorList from "../components/edit/SectionEditorList";
+import SectionListEditor from "../components/edit/SectionListEditor";
 import { useSurveyStore } from "../store";
 import callApi from "../utils/api";
 
@@ -23,7 +23,7 @@ const CreatePage = () => {
       <Button className="absolute -top-30 right-0 z-20" onClick={handleSubmit}>
         보내기
       </Button>
-      <SectionEditorList />
+      <SectionListEditor />
     </>
   );
 };

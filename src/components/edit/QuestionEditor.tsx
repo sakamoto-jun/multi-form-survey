@@ -21,7 +21,7 @@ const QuestionEditorBase = ({
   onDelete,
 }: QuestionEditorProps) => {
   return (
-    <Panel className="border-l-5 border-l-transparent focus-within:border-l-main">
+    <Panel className="border-l-5 border-l-transparent hover:border-l-main">
       <PanelHeader className="flex mb-25">
         <Input
           className="flex-1 mr-30"
@@ -31,7 +31,7 @@ const QuestionEditorBase = ({
         <QuestionTypeEditor type={question.type} onChange={question.setType} />
       </PanelHeader>
       <PanelBody>
-        <QuestionBodyEditor type={question.type} />
+        <QuestionBodyEditor question={question} />
       </PanelBody>
       <PanelFooter className="flex justify-end items-stretch gap-x-24 h-24 mt-20">
         <button onClick={() => onCopy(question.id)}>

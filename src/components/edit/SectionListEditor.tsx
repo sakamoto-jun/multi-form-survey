@@ -3,7 +3,7 @@ import { useSurveyStore } from "../../store";
 import EditorMenu from "./EditorMenu";
 import SectionEditor from "./SectionEditor";
 
-const SectionEditorListBase = () => {
+const SectionListEditorBase = () => {
   const surveyStore = useSurveyStore();
 
   return (
@@ -23,6 +23,6 @@ const SectionEditorListBase = () => {
   );
 };
 
-const SectionEditorList = observer(SectionEditorListBase);
+const SectionListEditor = observer(SectionListEditorBase);
 
-export default SectionEditorList;
+export default SectionListEditor;

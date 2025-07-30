@@ -1,16 +1,18 @@
-import { ReactNode, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { ReactNode } from "react";
 import CheckboxIcon from "../../assets/icons/check_box_outline_blank.svg?react";
 import RadioIcon from "../../assets/icons/radio_button_unchecked.svg?react";
+import Question from "../../models/question";
 import { QuestionType } from "../../types/app";
 import Input from "../common/Input";
 
 interface OptionEditorProps {
-  type: QuestionType;
+  question: Question;
 }
 
-export default function OptionEditor({ type }: OptionEditorProps) {
-  const [options, setOptions] = useState<string[]>([""]);
-
+const OptionEditorBase = ({
+  question: { options = [], type, setOption, setOptions },
+}: OptionEditorProps) => {
   return (
     <div>
       {options.map((option, index) => (
@@ -19,10 +21,7 @@ export default function OptionEditor({ type }: OptionEditorProps) {
           <Input
             value={option}
             onChange={(e) => {
-              const newOptions = [...options];
-
-              newOptions[index] = e.target.value;
-              setOptions(newOptions);
+              setOption(index, e.target.value);
             }}
           />
         </div>
@@ -31,17 +30,23 @@ export default function OptionEditor({ type }: OptionEditorProps) {
         {icons[type]}
         <button
           className="text-gray500 text-16"
-          onClick={() => setOptions((prev) => prev.concat(""))}
+          onClick={() =>
+            setOptions(options.concat(`옵션 ${options.length + 1}`))
+          }
         >
           옵션 추가
         </button>
       </div>
     </div>
   );
-}
+};
 
 const icons: Partial<Record<QuestionType, ReactNode>> = {
   multipleChoice: <RadioIcon />,
   checkbox: <CheckboxIcon />,
   dropdown: <RadioIcon />,
 };
+
+const OptionEditor = observer(OptionEditorBase);
+
+export default OptionEditor;

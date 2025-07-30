@@ -51,6 +51,10 @@ export default class Question implements QuestionData {
   setRequired = (required: boolean) => {
     this.required = required;
   };
+  setOption = (index: number, option: string) => {
+    if (!this.options) return;
+    this.options[index] = option;
+  };
   setOptions = (options: string[]) => {
     this.options = options;
   };

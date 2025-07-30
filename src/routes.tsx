@@ -3,6 +3,7 @@ import MainLayout from "./components/common/MainLayout";
 import AdminPage from "./pages/AdminPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
+import FormPage from "./pages/FormPage";
 import { SurveyStoreProvider } from "./store";
 
 export const routerConfig: RouteObject[] = [
@@ -19,6 +20,10 @@ export const routerConfig: RouteObject[] = [
       {
         path: "surveys/new",
         element: <CreatePage />,
+      },
+      {
+        path: "surveys/:surveyId",
+        element: <FormPage />,
       },
       {
         path: "surveys/:surveyId",

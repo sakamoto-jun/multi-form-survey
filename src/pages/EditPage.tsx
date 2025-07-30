@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import Button from "../components/common/Button";
 import Modal from "../components/common/Modal";
-import SectionEditorList from "../components/edit/SectionEditorList";
+import SectionListEditor from "../components/edit/SectionListEditor";
 import SendModalContent from "../components/edit/SendModalContent";
 import { useSurveyStore } from "../store";
 import callApi from "../utils/api";
@@ -35,7 +35,7 @@ const EditPage = () => {
       <Button className="absolute top-0 right-0" onClick={handleSubmit}>
         보내기
       </Button>
-      <SectionEditorList />
+      <SectionListEditor />
       <Modal opened={opened}>
         <SendModalContent
           surveyId={parseInt(surveyId, 10)}
