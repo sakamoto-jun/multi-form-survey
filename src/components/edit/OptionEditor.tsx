@@ -26,9 +26,10 @@ const OptionEditorBase = ({
           />
         </div>
       ))}
-      <div className="flex items-center gap-14 mt-28">
+      <div className="flex items-center gap-14 my-24">
         {icons[type]}
         <button
+          type="button"
           className="text-gray500 text-16"
           onClick={() =>
             setOptions(options.concat(`옵션 ${options.length + 1}`))

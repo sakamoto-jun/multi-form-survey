@@ -1,6 +1,7 @@
 import { Outlet, RouteObject } from "react-router";
 import MainLayout from "./components/common/MainLayout";
 import AdminPage from "./pages/AdminPage";
+import CompletePage from "./pages/CompletePage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import FormPage from "./pages/FormPage";
@@ -38,6 +39,10 @@ export const routerConfig: RouteObject[] = [
             element: <div>응답</div>,
           },
         ],
+      },
+      {
+        path: "surveys/:surveyId/complete",
+        element: <CompletePage />,
       },
     ],
   },

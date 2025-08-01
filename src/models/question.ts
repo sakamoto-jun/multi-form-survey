@@ -35,7 +35,7 @@ export default class Question implements QuestionData {
       type === "dropdown" ||
       type === "multipleChoice"
     ) {
-      this.options = this.options ?? [""];
+      this.options = this.options ?? [];
     } else {
       this.options = undefined;
     }

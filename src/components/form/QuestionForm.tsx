@@ -55,8 +55,10 @@ const QuestionForm = ({ question }: QuestionFormProps) => {
         <Controller
           name={`${question.id}`}
           control={control}
+          defaultValue={question.options?.[0]}
           render={({ field }) => (
             <Dropdown
+              defaultValue={question.options?.[0]}
               options={question.options!.map((option) => ({
                 label: <span>{option}</span>,
                 value: option,
