@@ -85,6 +85,7 @@ const DropdownButton = ({
 
   return (
     <button
+      type="button"
       className="relative border border-gray300 rounded-10 min-w-197 p-14 pr-36 text-left"
       onClick={open}
     >
@@ -125,6 +126,7 @@ const DropdownMenuItem = ({
 }) => {
   return (
     <button
+      type="button"
       className="p-14 border-t border-t-gray300 text-left first:border-none"
       onClick={onSelect}
     >

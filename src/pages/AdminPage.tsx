@@ -1,15 +1,16 @@
 import clsx from "clsx";
 import { PropsWithChildren } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import useSurveyId from "../hooks/domain/useSurveyId";
 
 const AdminPage = () => {
-  const params = useParams();
+  const surveyId = useSurveyId();
 
   return (
     <div className="flex flex-col">
       <div className="flex justify-center gap-x-20">
-        <Tab path={`/surveys/${params.surveyId}/edit`}>질문</Tab>
-        <Tab path={`/surveys/${params.surveyId}/responses`}>응답</Tab>
+        <Tab path={`/surveys/${surveyId}/edit`}>질문</Tab>
+        <Tab path={`/surveys/${surveyId}/responses`}>응답</Tab>
       </div>
       <div className="flex-1">
         <Outlet />

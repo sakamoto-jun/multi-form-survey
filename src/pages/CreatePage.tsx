@@ -1,4 +1,5 @@
 import { toJS } from "mobx";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Button from "../components/common/Button";
 import SectionListEditor from "../components/edit/SectionListEditor";
@@ -8,6 +9,10 @@ import callApi from "../utils/api";
 const CreatePage = () => {
   const surveyStore = useSurveyStore();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    surveyStore.init("create");
+  }, [surveyStore]);
 
   const handleSubmit = async () => {
     const { id } = await callApi<{ id: number }>("/surveys", {

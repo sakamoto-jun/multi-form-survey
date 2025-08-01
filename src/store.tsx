@@ -1,20 +1,35 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
-import Section, { SectionData } from "./models/section";
+import Section from "./models/section";
+import { SectionData } from "./types/app";
 import callApi from "./utils/api";
 
 class SurveyStore {
-  emailCollected: boolean;
-  sections: Section[];
-  focusedSectionId: number | null;
+  public emailCollected: boolean = false;
+  public sections: Section[] = [];
+  public focusedSectionId: number | null = null;
 
   constructor() {
     makeAutoObservable(this);
-    this.emailCollected = false;
-    this.sections = [new Section()];
-    this.focusedSectionId = this.sections[0].id;
   }
 
+  init = (
+    mode: "create" | "form",
+    data?: { sections: SectionData[]; emailCollected?: boolean }
+  ) => {
+    if (mode === "create") {
+      const section = new Section();
+      this.sections = [section];
+      this.focusedSectionId = section.id;
+      this.emailCollected = false;
+    }
+
+    if (mode === "form" && data) {
+      this.sections = data.sections.map((section) => new Section(section));
+      this.focusedSectionId = this.sections[0]?.id ?? null;
+      this.emailCollected = data.emailCollected ?? false;
+    }
+  };
   setFocusedSectionId = (id: number) => {
     if (this.focusedSectionId !== id) {
       this.focusedSectionId = id;
@@ -36,14 +51,12 @@ class SurveyStore {
     }
   };
   fetchSurvey = async (id: number) => {
-    const { sections, emailCollected } = await callApi<{
+    const res = await callApi<{
       sections: SectionData[];
       emailCollected: boolean;
     }>(`/surveys/${id}`);
 
-    this.emailCollected = emailCollected ?? false;
-    this.sections = sections.map((section) => new Section(section));
-    this.focusedSectionId = this.sections[0].id;
+    return res;
   };
 }
 

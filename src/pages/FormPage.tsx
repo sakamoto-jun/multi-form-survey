@@ -1,19 +1,27 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 import SectionListView from "../components/form/SectionListView";
+import useSurveyId from "../hooks/domain/useSurveyId";
 import { useSurveyStore } from "../store";
 
 const FormPage = () => {
   const surveyStore = useSurveyStore();
-  const { surveyId = "" } = useParams<{ surveyId: string }>();
+  const surveyId = useSurveyId();
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const id = parseInt(surveyId, 10);
+    const load = async () => {
+      const data = await surveyStore.fetchSurvey(surveyId);
+      surveyStore.init("form", data);
+      setLoaded(true);
+    };
 
-    if (id) {
-      surveyStore.fetchSurvey(id);
+    if (surveyId) {
+      load();
     }
   }, [surveyStore, surveyId]);
+
+  if (!loaded) return <LoadingSpinner />;
 
   return <SectionListView />;
 };

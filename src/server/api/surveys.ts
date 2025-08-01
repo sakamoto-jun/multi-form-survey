@@ -1,12 +1,18 @@
 import express from "express";
 import path from "path";
-import { SectionData } from "../../models/section";
+import { QuestionData, SectionData } from "../../types/app";
 import JsonStorage from "../../utils/jsonStorage";
+
+type SurveyResponse = Record<
+  SectionData["id"],
+  Record<QuestionData["id"], string | string[]>
+>;
 
 const router = express.Router();
 const storage = new JsonStorage<{
   sections: SectionData[];
   emailCollected: boolean;
+  responses: SurveyResponse[];
 }>(path.join(__dirname, "../data/surveys.json"));
 
 router.get("/", (_req, res) => {
@@ -50,6 +56,22 @@ router.get("/:id", (req, res) => {
   }
 
   return res.json(data);
+});
+
+router.post("/:id/responses", (req, res) => {
+  const id = Number(req.params.id);
+  const data = storage.get(id);
+
+  if (!data) {
+    return res.status(404).json({ message: "Not found." });
+  }
+
+  storage.set(id, {
+    ...data,
+    responses: [...(data.responses ?? []), req.body],
+  });
+
+  return res.status(201).json({ message: "Response added." });
 });
 
 export default router;
